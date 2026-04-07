@@ -6,6 +6,8 @@ export default function EventPopover({ dateStr, events, onSave, onClose, anchorR
   const ref = useRef(null)
   const inputRef = useRef(null)
 
+  const dayEvents = events[dateStr] || []
+
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
@@ -20,8 +22,6 @@ export default function EventPopover({ dateStr, events, onSave, onClose, anchorR
 
   if (!anchorRect) return null
 
-  const dayEvents = events[dateStr] || []
-
   const addEvent = () => {
     const trimmed = input.trim()
     if (!trimmed) return
@@ -29,8 +29,8 @@ export default function EventPopover({ dateStr, events, onSave, onClose, anchorR
     setInput('')
   }
 
-  const removeEvent = (i) => {
-    onSave(dateStr, dayEvents.filter((_, idx) => idx !== i))
+  const removeEvent = (index) => {
+    onSave(dateStr, dayEvents.filter((_, i) => i !== index))
   }
 
   const style = {

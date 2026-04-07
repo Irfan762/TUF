@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import styles from './MoodPicker.module.css'
 
-export const MOODS = ['☀️', '🌧️', '🔥', '😴', '🎉', '💪', '❤️', '😤']
+const MOODS = ['☀️', '🌧️', '🔥', '😴', '🎉', '💪', '❤️', '😤']
 
 export default function MoodPicker({ dateStr, moods, onSetMood, anchorRect }) {
   const ref = useRef(null)
+  const current = moods[dateStr]
 
-  // close on outside click
   useEffect(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) onSetMood(null)
@@ -17,9 +17,6 @@ export default function MoodPicker({ dateStr, moods, onSetMood, anchorRect }) {
 
   if (!anchorRect) return null
 
-  const current = moods[dateStr]
-
-  // position the popover above the cell
   const style = {
     position: 'fixed',
     left: anchorRect.left + anchorRect.width / 2,
