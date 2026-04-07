@@ -1,0 +1,44 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Light mode CSS variables ── */
+:root {
+  --card-bg:     #ffffff;
+  --body-bg:     linear-gradient(135deg, #dce8f5 0%, #e8eaf0 50%, #d8e4f0 100%);
+  --text:        #37474f;
+  --text-muted:  #78909c;
+  --text-faded:  #cfd8dc;
+  --border:      #e8edf2;
+  --nav-bg:      #fafcff;
+  --nav-hover:   #e3f2fd;
+  --accent:      #1976d2;
+  --accent-dark: #1565c0;
+}
+
+/* ── Dark mode CSS variables ── */
+html.dark {
+  --card-bg:     #1e2530;
+  --body-bg:     linear-gradient(135deg, #0f1923 0%, #1a2332 50%, #0f1923 100%);
+  --text:        #e0e6ed;
+  --text-muted:  #7a8fa6;
+  --text-faded:  #3a4a5a;
+  --border:      #2a3a4a;
+  --nav-bg:      #1a2332;
+  --nav-hover:   #243040;
+  --accent:      #42a5f5;
+  --accent-dark: #1976d2;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--body-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  transition: background 0.3s;
+}

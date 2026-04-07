@@ -1,0 +1,76 @@
+.popover {
+  z-index: 1000;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  animation: fadeUp 0.15s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translate(-50%, calc(-100% + 8px)); }
+  to   { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+.arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  background: var(--card-bg);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.moodBtn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, transform 0.12s;
+}
+
+.moodBtn:hover {
+  background: var(--nav-hover);
+  transform: scale(1.15);
+}
+
+.moodBtn.selected {
+  background: var(--nav-hover);
+  border-color: var(--accent);
+}
+
+.clear {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.clear:hover {
+  background: var(--nav-hover);
+  color: #d32f2f;
+}

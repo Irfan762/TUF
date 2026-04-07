@@ -1,0 +1,139 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 12px 16px 20px;
+  row-gap: 2px;
+}
+
+.header {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0 0 8px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.weekendHeader {
+  color: var(--accent);
+}
+
+/* ── Cell base ── */
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dayNum {
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  color: var(--text);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.12s, color 0.12s;
+}
+
+.cell:hover:not(.faded) .dayNum {
+  background: var(--nav-hover);
+  color: var(--accent);
+}
+
+.faded {
+  cursor: default;
+  pointer-events: none;
+}
+.faded .dayNum { color: var(--text-faded); }
+
+.weekend .dayNum { color: var(--accent); }
+
+/* ── Today ── */
+.today .dayNum {
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1.5px #66bb6a;
+}
+
+/* ── Range strip using CSS vars so color themes work ── */
+.inRange::before {
+  content: '';
+  position: absolute;
+  inset: 4px 0;
+  background: var(--range-light, #bbdefb);
+  z-index: 1;
+}
+.inRange .dayNum { color: var(--range-fill, #1565c0); }
+
+.rangeStart::before {
+  content: '';
+  position: absolute;
+  inset: 4px 0 4px 50%;
+  background: var(--range-light, #bbdefb);
+  z-index: 1;
+}
+.rangeStart .dayNum {
+  background: var(--range-fill, #1976d2);
+  color: #fff;
+}
+
+.rangeEnd::before {
+  content: '';
+  position: absolute;
+  inset: 4px 50% 4px 0;
+  background: var(--range-light, #bbdefb);
+  z-index: 1;
+}
+.rangeEnd .dayNum {
+  background: var(--range-fill, #1976d2);
+  color: #fff;
+}
+
+.singleDay .dayNum {
+  background: var(--range-fill, #1976d2);
+  color: #fff;
+}
+
+/* ── Mood badge ── */
+.moodBadge {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  font-size: 9px;
+  line-height: 1;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── Event dot ── */
+.eventDot {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--range-fill, var(--accent));
+  z-index: 3;
+}
+
+.dragging { cursor: grabbing; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .grid { padding: 10px 10px 16px; }
+  .cell { height: 30px; }
+  .dayNum { font-size: 11.5px; width: 24px; height: 24px; }
+  .header { font-size: 8.5px; padding-bottom: 6px; }
+}

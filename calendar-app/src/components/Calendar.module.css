@@ -1,0 +1,219 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.06),
+    0 8px 24px rgba(0,0,0,0.12),
+    0 24px 60px rgba(25,118,210,0.10);
+  width: 100%;
+  max-width: 700px;
+  overflow: hidden;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 6px;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+/* ── Nav bar ── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px 6px;
+  border-bottom: 1px solid var(--border);
+  background: var(--nav-bg);
+  transition: background 0.3s;
+}
+
+.navBtn {
+  background: none;
+  border: 1px solid transparent;
+  font-size: 22px;
+  color: var(--accent);
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.navBtn:hover {
+  background: var(--nav-hover);
+  border-color: var(--border);
+}
+
+.navCenter {
+  flex: 1;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.rangeLabel {
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 14px;
+  border-radius: 20px;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.clearBtn {
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.clearBtn:hover { opacity: 0.75; }
+
+.hint {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.1px;
+}
+
+/* ── Page clip ── */
+.pageClip {
+  overflow: hidden;
+  position: relative;
+  /* lock the height so the card never collapses during the slide */
+  min-height: 520px;
+}
+
+.page {
+  width: 100%;
+}
+
+.slideNext {
+  animation: slideInRight 0.32s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.slidePrev {
+  animation: slideInLeft 0.32s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* translate only — no opacity/scale so the card size stays stable */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .heroImg { transform: scale(1.03); }
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.04) 0%,
+    rgba(0,0,0,0.18) 55%,
+    rgba(0,0,0,0.50) 100%
+  );
+}
+
+.wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  pointer-events: none;
+}
+
+.wave svg { width: 100%; height: 100%; }
+
+.monthLabel {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #fff;
+  z-index: 2;
+}
+
+.yearText {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  line-height: 1;
+}
+
+.monthText {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+
+/* ── Body ── */
+.body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+  min-height: 280px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 620px) {
+  .card { border-radius: 12px; }
+  .hero { height: 200px; }
+  .monthText { font-size: 24px; }
+  .yearText  { font-size: 12px; }
+  .body { grid-template-columns: 1fr; }
+  .hint { font-size: 9.5px; }
+  .pageClip { min-height: 480px; }
+}
