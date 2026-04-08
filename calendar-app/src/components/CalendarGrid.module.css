@@ -57,6 +57,20 @@
 
 .weekend .dayNum { color: var(--accent); }
 
+/* ── Holiday cell ── */
+.holiday .dayNum {
+  background: #fff3e0;
+  color: #e65100;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1.5px #ffb74d;
+}
+
+html.dark .holiday .dayNum {
+  background: #3e2a00;
+  color: #ffb74d;
+  box-shadow: inset 0 0 0 1.5px #e65100;
+}
+
 /* ── Today ── */
 .today .dayNum {
   background: #e8f5e9;

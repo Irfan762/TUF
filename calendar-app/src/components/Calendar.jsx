@@ -231,7 +231,11 @@ export default function Calendar() {
               </div>
 
               <div className={styles.body}>
-                <Notes monthKey={monthKey} />
+                <Notes
+                  monthKey={monthKey}
+                  rangeStart={rangeStart}
+                  rangeEnd={displayEnd}
+                />
                 <CalendarGrid
                   year={year}
                   month={month}

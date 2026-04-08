@@ -142,6 +142,7 @@ export default function CalendarGrid({
             !cell.current && styles.faded,
             cell.current && isWeekend && styles.weekend,
             cell.current && isToday && styles.today,
+            cell.current && holiday && styles.holiday,
             cell.current && inRange && styles.inRange,
             cell.current && isStart && !single && styles.rangeStart,
             cell.current && isEnd && !single && styles.rangeEnd,
@@ -159,6 +160,7 @@ export default function CalendarGrid({
               data-date={dateStr}
               className={cls}
               style={cellStyle}
+              title={holiday || undefined}
               onMouseDown={cell.current ? e => handleMouseDown(e, dateObj) : undefined}
               onMouseEnter={cell.current ? () => onDragMove(dateObj) : undefined}
               onMouseUp={cell.current ? () => onDragEnd(dateObj) : undefined}
