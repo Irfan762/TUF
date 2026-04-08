@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import MoodPicker from './MoodPicker'
 import EventPopover from './EventPopover'
+import { getHoliday } from '../data/holidays'
 import styles from './CalendarGrid.module.css'
 
 const DAY_LABELS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
@@ -134,6 +135,7 @@ export default function CalendarGrid({
           const dateStr = dateObj ? dateObj.toISOString().split('T')[0] : undefined
           const mood = dateStr ? moods[dateStr] : null
           const hasEvents = dateStr && events[dateStr]?.length > 0
+          const holiday = cell.current ? getHoliday(month, cell.day) : null
 
           const cls = [
             styles.cell,
@@ -175,6 +177,7 @@ export default function CalendarGrid({
               }}
             >
               <span className={styles.dayNum}>{cell.day}</span>
+              {holiday && <span className={styles.holidayDot} title={holiday}>🎉</span>}
               {mood && <span className={styles.moodBadge}>{mood}</span>}
               {hasEvents && <span className={styles.eventDot} />}
             </div>
